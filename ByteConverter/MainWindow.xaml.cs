@@ -26,6 +26,7 @@ namespace ByteConverter
         public MainWindow()
         {
             InitializeComponent();
+            LoadCaptcha();
         }
 
         private void LoadImage_Click(object sender, RoutedEventArgs e)
@@ -75,11 +76,6 @@ namespace ByteConverter
         //}
         
 
-        private void CopyButton_Click(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetText(res);
-            BinaryTXT.Content = "Скопировано";
-        }
 
         private void ReconvertImage_Click(object sender, RoutedEventArgs e)
         {
@@ -176,6 +172,45 @@ namespace ByteConverter
                 {
                     encoder.Save(stream);
                 }
+            }
+        }
+
+        private void LoadCaptcha()
+        {
+            var captchaTuple = CaptchaGenerator.GenerateCaptcha(200, 50, 50);
+            var captchaImage = captchaTuple.Item2;
+
+            // Отображение изображения в Image элементе WPF
+            CaptchaImage.Source = ConvertBitmapToBitmapImage(captchaImage);
+        }
+
+        private BitmapImage ConvertBitmapToBitmapImage(Bitmap bitmap)
+        {
+            using (var memory = new MemoryStream())
+            {
+                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Png);
+                memory.Position = 0;
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memory;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                return bitmapImage;
+            }
+        }
+
+        private bool VerifyCaptcha1(string userInput)
+        {
+            if (CaptchaGenerator.VerifyCaptcha(userInput))
+            {
+                MessageBox.Show("CAPTCHA введена правильно!");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("CAPTCHA введена неправильно. Попробуйте еще раз.");
+                LoadCaptcha();
+                return false;
             }
         }
     }
