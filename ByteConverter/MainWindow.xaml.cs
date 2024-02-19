@@ -34,7 +34,9 @@ namespace ByteConverter
             OpenFileDialog dlg = new OpenFileDialog();
 
             dlg.DefaultExt = ".jpg";
-            dlg.Filter = "JPEG Files (*.jpg)|*.jpg";
+            dlg.Filter = "All Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff;*.ico|Bitmap Files (*.bmp)|*.bmp|JPEG Files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif|TIFF Files (*.tif;*.tiff)|*.tif;*.tiff|Icon Files (*.ico)|*.ico";
+
+
 
             bool? res = dlg.ShowDialog();
 
@@ -153,13 +155,15 @@ namespace ByteConverter
 
         private void SaveDoneImage_Click(object sender, RoutedEventArgs e)
         {
-            
+
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "JPEG Image (*.jpg)|*.jpg";
+
+            dialog.Filter = "All Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff;*.ico|Bitmap Files (*.bmp)|*.bmp|JPEG Image (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG Image (*.png)|*.png|GIF Image (*.gif)|*.gif|TIFF Image (*.tif;*.tiff)|*.tif;*.tiff|Icon Files (*.ico)|*.ico";
             dialog.DefaultExt = ".jpg";
             dialog.AddExtension = true;
 
-            
+
+
             if (dialog.ShowDialog() == true)
             {
                 
@@ -212,6 +216,11 @@ namespace ByteConverter
                 LoadCaptcha();
                 return false;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            VerifyCaptcha1(Captchaa.Text);
         }
     }
 }

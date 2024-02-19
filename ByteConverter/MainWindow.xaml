@@ -26,6 +26,8 @@
         <Button x:Name="SaveToFile" Content="Сохранить в файл" HorizontalAlignment="Left" Margin="25,67,0,0" Grid.Row="2" VerticalAlignment="Top" Height="34" Width="158" Click="SaveToFile_Click" />
         <Button x:Name="SaveDoneImage" Content="Сохранить картинку" HorizontalAlignment="Left" Margin="188,67,0,0" Grid.Row="2" VerticalAlignment="Top" Height="34" Width="158" Click="SaveDoneImage_Click"  />
         <Image HorizontalAlignment="Left" x:Name="CaptchaImage" Stretch="Fill" Height="148" Grid.Row="1" VerticalAlignment="Top" Width="404" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Column="1" Name="Captchaa" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227" Height="39"/>
+        <Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="50,93,0,0" Grid.Row="1" VerticalAlignment="Top" Height="48" Width="148" Click="Button_Click"/>
 
 
 
